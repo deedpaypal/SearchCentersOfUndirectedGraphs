@@ -1,17 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
-using MultidimensionalArrayFloydWarshall.MatrixGenerator;
-using MultidimensionalArrayFloydWarshall.Utils;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ArrayOfArraysFloydWarshall.MatrixGenerator;
+using ArrayOfArraysFloydWarshall.Utils;
 
 
-
-namespace MultidimensionalArrayFloydWarshall
+namespace ArrayOfArraysFloydWarshall
 {
     class Program
     {
-        
         static void Main(string[] args)
         {
+
             Console.WriteLine("Input amount of vertexes");
             int sizeOfGraph = Convert.ToInt32(Console.ReadLine());
 
@@ -26,8 +29,7 @@ namespace MultidimensionalArrayFloydWarshall
             for (int i = 0; i < amountOfGraphs; i++)
             {
                 //объект для построения рандомного графа
-                MatrixGeneratorMultidimensionalArray m = new MatrixGeneratorMultidimensionalArray(sizeOfGraph);
-
+                MatrixGeneratorArrayOfArrays m = new MatrixGeneratorArrayOfArrays(sizeOfGraph);
                 //исследуемый рандомный граф
                 /// <summary>
                 /// Тут объект класса MatrixGeneratorArrayOfArrays содержит методы
@@ -35,9 +37,9 @@ namespace MultidimensionalArrayFloydWarshall
                 /// то есть зависимость от разреженности. По умолчанию слаборазреженный граф
                 /// изменяй их по своему усмотрению
                 /// </summary>
+               
 
-
-                int[,] graph = m.GetLowRarefactionMatrix();
+                int[][] graph = m.GetLowRarefactionMatrix();
 
                 //печатаем для наглядности
                 MatrixPrinter.Print(graph);
@@ -46,10 +48,10 @@ namespace MultidimensionalArrayFloydWarshall
                 sw.Start();
                 //объект-анализатор, в котором есть методы построения матрицы Dn кратчайших путей, поиск эксцентриситетов и центров
                 Analyser analyser = new Analyser();
-                int[,] graphToFloydWarshall = analyser.FloydWarshall(graph);
+                int[][] graphToFloydWarshall = analyser.FloydWarshall(graph);
                 int[] excentricities = analyser.Excentricity(graphToFloydWarshall);
                 //вывод вершин-центров
-                Console.WriteLine("Centers-vertexes: ");
+                Console.Write("Centers-vertexes: ");
                 foreach (var center in analyser.GetCenters(excentricities))
                 {
                     Console.Write(center + " ");
@@ -57,22 +59,20 @@ namespace MultidimensionalArrayFloydWarshall
                 sw.Stop();
                 //прибвляем к общему времени время, затраченное на текущий граф
                 sWatch = sWatch + sw.Elapsed.TotalSeconds;
+                //время затраченное на текущий граф
                 Console.WriteLine();
-                Console.WriteLine("Time for a single graph: {0} seconds", sw.Elapsed.TotalSeconds);
+                Console.WriteLine("Time for a single graph {0}", sw.Elapsed.TotalSeconds);
             }
 
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
             //среднее время
-            Console.WriteLine("Average time for graph, which has a {0} vertexes: {1} seconds", amountOfGraphs, sWatch / amountOfGraphs);
-            Console.WriteLine();
-            Console.WriteLine();
+            Console.WriteLine("Average time for graph, which has a {0} vertexes: {1}", amountOfGraphs, sWatch / amountOfGraphs);
+            
 
             Console.ReadKey();
         }
-
-
-      
+        
     }
 }

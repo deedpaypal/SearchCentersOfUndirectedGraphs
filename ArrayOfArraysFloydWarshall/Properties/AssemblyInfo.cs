@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью 
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("MultidimensionalArrayFloydWarshall")]
+[assembly: AssemblyTitle("ArrayOfArraysFloydWarshall")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MultidimensionalArrayFloydWarshall")]
+[assembly: AssemblyProduct("ArrayOfArraysFloydWarshall")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("19e57af8-624f-417e-b903-ab1589a02885")]
+[assembly: Guid("05365e04-2e54-485c-822f-7be04111e366")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //
